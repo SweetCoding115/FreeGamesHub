@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/react";
-import { FaWindows, FaFirefoxBrowser, FaGamepad } from "react-icons/fa";
+import { FaWindows, FaChrome, FaGamepad } from "react-icons/fa";
 import { MdNavigateNext } from "react-icons/md";
 import { Link } from "react-router-dom";
 import {
@@ -18,7 +18,7 @@ import {
   useGetAllGamesQuery,
   useGetPopularGamesQuery,
   useGetGiveawaysQuery,
-  useGetNewsQuery
+  useGetNewsQuery,
 } from "../../services";
 import { useMemo } from "react";
 import { SwiperSlide } from "swiper/react";
@@ -33,8 +33,10 @@ const variants = {
 
 export const Home = () => {
   const { data: allGames, isLoading: allGamesLoading } = useGetAllGamesQuery();
-  const { data: popularGames, isLoading: popularGamesLoading } = useGetPopularGamesQuery();
-  const { data: giveaways, isLoading: giveawayLoading } = useGetGiveawaysQuery();
+  const { data: popularGames, isLoading: popularGamesLoading } =
+    useGetPopularGamesQuery();
+  const { data: giveaways, isLoading: giveawayLoading } =
+    useGetGiveawaysQuery();
   const { data: news, isLoading: newsLoading } = useGetNewsQuery();
 
   const newGames = useMemo(() => {
@@ -104,7 +106,7 @@ export const Home = () => {
                   variant="ghost"
                   className="font-bold gap-1"
                   size="lg"
-                  startContent={<FaFirefoxBrowser size={18} />}
+                  startContent={<FaChrome size={18} />}
                   as={Link}
                   to="/games?platform=browser"
                 >
@@ -136,39 +138,39 @@ export const Home = () => {
           <SwiperSlider effect="coverflow">
             {allGamesLoading
               ? [1, 2, 3, 4, 5, 6].map((item, index) => (
-                <SwiperSlide key={item}>
-                  <motion.div
-                    variants={variants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{
-                      delay: index * stagger,
-                      ease: "easeInOut",
-                      duration: 0.5,
-                    }}
-                    viewport={{ amount: 0 }}
-                  >
-                    <NewGameAddedSkeleton />
-                  </motion.div>
-                </SwiperSlide>
-              ))
+                  <SwiperSlide key={item}>
+                    <motion.div
+                      variants={variants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{
+                        delay: index * stagger,
+                        ease: "easeInOut",
+                        duration: 0.5,
+                      }}
+                      viewport={{ amount: 0 }}
+                    >
+                      <NewGameAddedSkeleton />
+                    </motion.div>
+                  </SwiperSlide>
+                ))
               : newGames?.map((game: Game, index: number) => (
-                <SwiperSlide key={game.id}>
-                  <motion.div
-                    variants={variants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{
-                      delay: index * stagger,
-                      ease: "easeInOut",
-                      duration: 0.5,
-                    }}
-                    viewport={{ amount: 0 }}
-                  >
-                    <NewGamesAddedCard game={game} />
-                  </motion.div>
-                </SwiperSlide>
-              ))}
+                  <SwiperSlide key={game.id}>
+                    <motion.div
+                      variants={variants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{
+                        delay: index * stagger,
+                        ease: "easeInOut",
+                        duration: 0.5,
+                      }}
+                      viewport={{ amount: 0 }}
+                    >
+                      <NewGamesAddedCard game={game} />
+                    </motion.div>
+                  </SwiperSlide>
+                ))}
           </SwiperSlider>
         </section>
 
@@ -194,26 +196,7 @@ export const Home = () => {
             <SwiperSlider effect="slide">
               {popularGamesLoading
                 ? [1, 2, 3, 4, 5, 6].map((item, index) => (
-                  <SwiperSlide key={item}>
-                    <motion.div
-                      variants={variants}
-                      initial="hidden"
-                      animate="visible"
-                      transition={{
-                        delay: index * stagger,
-                        ease: "easeInOut",
-                        duration: 0.5,
-                      }}
-                      viewport={{ amount: 0 }}
-                    >
-                      <MostPlayedGamesSkeleton />
-                    </motion.div>
-                  </SwiperSlide>
-                ))
-                : popularGames
-                  ?.slice(0, 15)
-                  ?.map((game: Game, index: number) => (
-                    <SwiperSlide key={game.id}>
+                    <SwiperSlide key={item}>
                       <motion.div
                         variants={variants}
                         initial="hidden"
@@ -225,10 +208,29 @@ export const Home = () => {
                         }}
                         viewport={{ amount: 0 }}
                       >
-                        <MostPlayedGamesCard game={game} />
+                        <MostPlayedGamesSkeleton />
                       </motion.div>
                     </SwiperSlide>
-                  ))}
+                  ))
+                : popularGames
+                    ?.slice(0, 15)
+                    ?.map((game: Game, index: number) => (
+                      <SwiperSlide key={game.id}>
+                        <motion.div
+                          variants={variants}
+                          initial="hidden"
+                          animate="visible"
+                          transition={{
+                            delay: index * stagger,
+                            ease: "easeInOut",
+                            duration: 0.5,
+                          }}
+                          viewport={{ amount: 0 }}
+                        >
+                          <MostPlayedGamesCard game={game} />
+                        </motion.div>
+                      </SwiperSlide>
+                    ))}
             </SwiperSlider>
           </div>
         </section>
@@ -255,25 +257,23 @@ export const Home = () => {
           <SwiperSlider effect="slide">
             {newsLoading
               ? [1, 2, 3, 4, 5, 6].map((item, index) => (
-                <SwiperSlide key={item}>
-                  <motion.div
-                    variants={variants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{
-                      delay: index * stagger,
-                      ease: "easeInOut",
-                      duration: 0.5,
-                    }}
-                    viewport={{ amount: 0 }}
-                  >
-                    <NewsCardSkeleton />
-                  </motion.div>
-                </SwiperSlide>
-              ))
-              : news
-                ?.slice(0, 3)
-                ?.map((news: News, index: number) => (
+                  <SwiperSlide key={item}>
+                    <motion.div
+                      variants={variants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{
+                        delay: index * stagger,
+                        ease: "easeInOut",
+                        duration: 0.5,
+                      }}
+                      viewport={{ amount: 0 }}
+                    >
+                      <NewsCardSkeleton />
+                    </motion.div>
+                  </SwiperSlide>
+                ))
+              : news?.slice(0, 3)?.map((news: News, index: number) => (
                   <SwiperSlide key={news.id}>
                     <motion.div
                       variants={variants}
@@ -315,26 +315,7 @@ export const Home = () => {
           <SwiperSlider effect="slide">
             {giveawayLoading
               ? [1, 2, 3, 4, 5, 6].map((item, index) => (
-                <SwiperSlide key={item}>
-                  <motion.div
-                    variants={variants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{
-                      delay: index * stagger,
-                      ease: "easeInOut",
-                      duration: 0.5,
-                    }}
-                    viewport={{ amount: 0 }}
-                  >
-                    <GiveawayCardSkeleton />
-                  </motion.div>
-                </SwiperSlide>
-              ))
-              : giveaways
-                ?.slice(0, 3)
-                ?.map((giveaway: Giveaway, index: number) => (
-                  <SwiperSlide key={giveaway.id}>
+                  <SwiperSlide key={item}>
                     <motion.div
                       variants={variants}
                       initial="hidden"
@@ -346,10 +327,29 @@ export const Home = () => {
                       }}
                       viewport={{ amount: 0 }}
                     >
-                      <GiveawayCard giveaway={giveaway} />
+                      <GiveawayCardSkeleton />
                     </motion.div>
                   </SwiperSlide>
-                ))}
+                ))
+              : giveaways
+                  ?.slice(0, 3)
+                  ?.map((giveaway: Giveaway, index: number) => (
+                    <SwiperSlide key={giveaway.id}>
+                      <motion.div
+                        variants={variants}
+                        initial="hidden"
+                        animate="visible"
+                        transition={{
+                          delay: index * stagger,
+                          ease: "easeInOut",
+                          duration: 0.5,
+                        }}
+                        viewport={{ amount: 0 }}
+                      >
+                        <GiveawayCard giveaway={giveaway} />
+                      </motion.div>
+                    </SwiperSlide>
+                  ))}
           </SwiperSlider>
         </section>
 
