@@ -1,18 +1,18 @@
 export const socialMediaLinks = [
     {
         name: "github",
-        url: "https://github.com/Abhishek1350",
+        url: "https://github.com/SweetCoding115",
     },
     {
-        name: "linkedin",
-        url: "https://www.linkedin.com/in/abhishek-bhardwaj-76b9a721b/",
+        name: "skype",
+        url: "https://join.skype.com/invite/q7kutPqmW3gp",
     },
     {
-        name: "twitter",
-        url: "https://twitter.com/abhishek1350",
+        name: "gmail",
+        url: "mailto:moriahbuckridge96115@gmail.com",
     },
     {
-        name: "instagram",
-        url: "https://www.instagram.com/imabhishek.dev/",
+        name: "discord",
+        url: "https://discordapp.com/users/1137049992398381087",
     },
 ];
