@@ -113,7 +113,3 @@ npm run build
 
 **Quick fix if you don't want to mess up with react-snap issues : Just remove it.**
 
-## Demo
-
-- [**Current Version**](https://freegameshub.vercel.app)
-- [**Previous Version**](https://free-games-dldq8u7zz-abhishek1350.vercel.app)
